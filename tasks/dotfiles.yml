@@ -1,0 +1,13 @@
+---
+- name: Cloning  dotfiles
+  git:
+    repo=https://github.com/veggiemonk/dotfiles
+    dest=~/.dotfiles
+    accept_hostkey=yes
+  sudo: no
+  register: cloned
+
+- name: Linking dotfiles
+  shell: ~/.dotfiles/install/link.sh chdir=~/.dotfiles
+  when: cloned|success
+  sudo: no

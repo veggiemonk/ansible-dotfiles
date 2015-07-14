@@ -1,0 +1,13 @@
+---
+- name: Cloning fonts
+  git:
+    repo=https://github.com/powerline/fonts
+    dest=~/.config/powerlinefonts
+    accept_hostkey=yes
+  register: fontCloned
+  sudo: no
+
+- name: Install Fonts
+  shell: ~/.config/powerlinefonts/install.sh chdir=~/.config/powerlinefonts
+  when: fontCloned|success
+  sudo: no

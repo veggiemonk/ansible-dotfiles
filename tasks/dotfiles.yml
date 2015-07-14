@@ -8,6 +8,6 @@
   register: cloned
 
 - name: Linking dotfiles
-  shell: ~/.dotfiles/install/link.sh chdir=~/.dotfiles
+  shell: install/install.sh chdir=~/.dotfiles
   when: cloned|success
   sudo: no

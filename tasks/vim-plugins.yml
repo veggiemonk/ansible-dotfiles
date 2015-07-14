@@ -1,0 +1,15 @@
+---
+- name: Install vim plugins
+  shell: vim -c ":PlugInstall" -c q -c q -c q
+  register: pluginsInstalled
+  sudo: no
+
+- name: Compile YouCompleteMe
+  shell: ./install.sh chdir=~/.dotfiles/vim/vim.symlink/plugged/YouCompleteMe
+  when: pluginsInstalled|success
+  sudo: no
+
+- name: Install ternjs for vim
+  npm: path=~/.dotfiles/vim/vim.symlink/plugged/tern_for_vim
+  when: pluginsInstalled|success
+  sudo: no
